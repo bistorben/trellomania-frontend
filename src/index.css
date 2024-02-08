@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* font variables */
+  --primary-font: "Roboto", sans-serif;
+
+  /* color variables */
+  --primary-color: #ffffff;
+
+  --primary-background: #ac4b7a;
+
+  /* spacing variables */
+
+  --m-0: 0.5rem;
+  --m-1: 0.75rem;
+  --m-2: 1rem;
+  --m-3: 1.25rem;
+
+  --p-0: 0.5rem;
+  --p-1: 0.75rem;
+  --p-2: 1rem;
+  --p-3: 1.25rem;
+
+  /* root styes */
+  font-family: var(--primary-font);
+}
