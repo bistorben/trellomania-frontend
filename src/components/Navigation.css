@@ -1,4 +1,40 @@
 .Navigation {
-  padding: var(--p-0);
+  padding: var(--p-3);
   background-color: var(--primary-background);
+  display: flex;
+  justify-content: space-between;
+  color: var(--primary-navigation-color);
+
+  & .wrapper-nav-left {
+    display: flex;
+
+    & .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      /* font-size: 0.875rem; */
+      & h3 {
+        font-size: 0.875rem;
+        /* font-size: 14px; */
+      }
+    }
+  }
+
+  & .wrapper-nav-right {
+    display: flex;
+    & .user-panel {
+      display: flex;
+    }
+  }
+
+  & a {
+    color: var(--primary-navigation-color);
+    /* line-height: 2rem; */
+    text-decoration: none;
+    padding: var(--p-1);
+    border-radius: 0.188rem;
+    &:hover {
+      background-color: var(--primary-horizontal-hover-color);
+    }
+  }
 }

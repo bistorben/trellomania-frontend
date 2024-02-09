@@ -9,22 +9,24 @@
   --primary-font: "Roboto", sans-serif;
 
   /* color variables */
-  --primary-color: #ffffff;
+  --primary-navigation-color: #ffffff;
+  --primary-horizontal-hover-color: #a6c5e229;
 
   --primary-background: #ac4b7a;
 
   /* spacing variables */
 
-  --m-0: 0.5rem;
-  --m-1: 0.75rem;
-  --m-2: 1rem;
-  --m-3: 1.25rem;
+  --m-1: 0.5rem;
+  --m-2: 0.75rem;
+  --m-3: 1rem;
+  --m-4: 1.25rem;
 
-  --p-0: 0.5rem;
-  --p-1: 0.75rem;
-  --p-2: 1rem;
-  --p-3: 1.25rem;
+  --p-1: 0.5rem;
+  --p-2: 0.75rem;
+  --p-3: 1rem;
+  --p-4: 1.25rem;
 
   /* root styes */
   font-family: var(--primary-font);
+  font-size: 0.875rem;
 }
