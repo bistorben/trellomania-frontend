@@ -1,15 +1,16 @@
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import { SiTrello } from "react-icons/si";
+import { IoIosSearch } from "react-icons/io";
 
 const Navigation = () => {
   return (
     <nav className="Navigation">
       <div className="wrapper-nav-left">
-        <div className="logo">
+        <NavLink to="/" className="logo">
           <SiTrello />
           <h3>Trello</h3>
-        </div>
+        </NavLink>
         <div className="nav-link">
           <NavLink to="/">Arbeitsbereiche</NavLink>
           <NavLink to="/loggedin">Zuletzt angesehen</NavLink>
@@ -17,12 +18,13 @@ const Navigation = () => {
       </div>
       <div className="wrapper-nav-right">
         <div className="search">
-          <input type="search" placeholder="Search" />
+          <label htmlFor="search">
+            <IoIosSearch className="search-icon" />
+          </label>
+          <input type="search" placeholder="Suchen" id="search" />{" "}
         </div>
         <div className="user-panel">
-          <h3>O</h3>
-          <h3>O</h3>
-          <h3>O</h3>
+          <button className="user-icon">JE</button>
         </div>
       </div>
     </nav>
