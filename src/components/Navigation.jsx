@@ -24,7 +24,9 @@ const Navigation = () => {
           <input type="search" placeholder="Suchen" id="search" />{" "}
         </div>
         <div className="user-panel">
-          <button className="user-icon">JE</button>
+          <NavLink to="/register" className="user-icon">
+            JE
+          </NavLink>
         </div>
       </div>
     </nav>
