@@ -2,8 +2,13 @@ import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import { SiTrello } from "react-icons/si";
 import { IoIosSearch } from "react-icons/io";
+import { AuthContext } from "../contexts/AuthContext.jsx";
+import { useContext } from "react";
 
 const Navigation = () => {
+  const { authUser } = useContext(AuthContext);
+  console.log(authUser);
+
   return (
     <nav className="Navigation">
       <div className="wrapper-nav-left">
@@ -13,7 +18,7 @@ const Navigation = () => {
         </NavLink>
         <div className="nav-link">
           <NavLink to="/">Arbeitsbereiche</NavLink>
-          <NavLink to="/loggedin">Zuletzt angesehen</NavLink>
+          <NavLink to="/loggedin/dashboard">Zuletzt angesehen</NavLink>
         </div>
       </div>
       <div className="wrapper-nav-right">

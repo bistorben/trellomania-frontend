@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../contexts/AuthContext.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setLoggedIn } = useContext(AuthContext);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -16,9 +18,13 @@ const Login = () => {
     try {
       const response = await axios.post(
         "http://localhost:3000/user/login",
-        loginData
+        loginData,
+        {
+          withCredentials: true,
+        }
       );
       console.log(response.data);
+      setLoggedIn(true);
     } catch (err) {
       console.log(err);
     }
