@@ -1,9 +1,10 @@
+/* nav styling for logged in AND out state */
+
 .Navigation {
-  padding: var(--p-1);
-  background-color: var(--primary-background);
   display: flex;
   justify-content: space-between;
-  color: var(--primary-navigation-color);
+  position: relative;
+  z-index: 1;
   font-weight: 500;
 
   & .wrapper-nav-left {
@@ -16,14 +17,6 @@
       gap: 0.2rem;
       font-size: 18px;
       padding: var(--p-1);
-
-      & h3 {
-        /* font-size: 18px; */
-        /* font-size: 1rem; */
-      }
-      &:hover {
-        background-color: var(--primary-horizontal-hover-color);
-      }
     }
   }
 
@@ -61,12 +54,12 @@
     }
 
     & .user-panel {
-      & .user-icon {
+      /* & .user-icon {
         background-color: #00a3bf;
         padding: var(--p-1);
         border-radius: 50%;
         border: none;
-      }
+      } */
     }
   }
   & .nav-link {
@@ -76,8 +69,71 @@
   & a {
     color: var(--primary-navigation-color);
     text-decoration: none;
-    padding: var(--p-1);
+  }
+}
+
+/* nav styling for logged out */
+
+.nav-logged-out {
+  background-color: var(--primary-navigation-color);
+  color: #172b4d;
+  &:hover {
+    box-shadow: 0px 8px 12px #091e4226, 0px 0px 1px #091e424f;
+    transition: 0.5s ease;
+  }
+
+  & a {
+    color: #172b4d;
+  }
+
+  & .nav-link {
+    & a:hover {
+      color: #0c66e4;
+    }
+  }
+
+  & .wrapper-nav-left {
+    margin-left: var(--m-1);
+  }
+
+  & .user-panel {
+    font-size: 1.4rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    letter-spacing: 0.7px;
+    a {
+      padding: 1.3rem 2.5rem;
+    }
+    & #login-link:hover {
+      text-decoration: underline;
+    }
+    & #register-link {
+      background-color: blue;
+      color: white;
+      &:hover {
+        background-color: rgb(7, 71, 166);
+      }
+    }
+  }
+}
+
+/* nav styling for logged in */
+
+.nav-logged-in {
+  background-color: var(--primary-background);
+  color: var(--primary-navigation-color);
+  padding: var(--p-1);
+
+  .logo {
+    &:hover {
+      background-color: var(--primary-horizontal-hover-color);
+    }
+  }
+  a {
     border-radius: 0.188rem;
+    padding: var(--p-1);
     &:hover {
       background-color: var(--primary-horizontal-hover-color);
     }

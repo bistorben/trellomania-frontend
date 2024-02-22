@@ -2,36 +2,51 @@ import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import { SiTrello } from "react-icons/si";
 import { IoIosSearch } from "react-icons/io";
-import { AuthContext } from "../contexts/AuthContext.jsx";
 import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext.jsx";
 
 const Navigation = () => {
-  const { authUser } = useContext(AuthContext);
-  console.log(authUser);
+  const { loggedIn } = useContext(AuthContext);
 
   return (
-    <nav className="Navigation">
+    <nav
+      className={`Navigation ${loggedIn ? "nav-logged-in" : "nav-logged-out"}`}
+    >
       <div className="wrapper-nav-left">
         <NavLink to="/" className="logo">
-          <SiTrello />
-          <h3>Trello</h3>
+          <SiTrello style={{ color: loggedIn ? undefined : "#0c66e4" }} />
+          <h3>Trellomania</h3>
         </NavLink>
         <div className="nav-link">
-          <NavLink to="/">Arbeitsbereiche</NavLink>
-          <NavLink to="/loggedin/dashboard">Zuletzt angesehen</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </div>
       </div>
       <div className="wrapper-nav-right">
-        <div className="search">
-          <label htmlFor="search">
-            <IoIosSearch className="search-icon" />
-          </label>
-          <input type="search" placeholder="Suchen" id="search" />{" "}
-        </div>
+        {loggedIn && (
+          <div className="search">
+            <label htmlFor="search">
+              <IoIosSearch className="search-icon" />
+            </label>
+            <input type="search" placeholder="Suchen" id="search" />{" "}
+          </div>
+        )}
+
         <div className="user-panel">
-          <NavLink to="/register" className="user-icon">
+          {/* <NavLink to="/register" className="user-icon">
             JE
-          </NavLink>
+          </NavLink> */}
+          {loggedIn ? (
+            <NavLink to="/logout">Logout</NavLink>
+          ) : (
+            <>
+              <NavLink to="/login" id="login-link">
+                Log in
+              </NavLink>
+              <NavLink to="/register" id="register-link">
+                Get Trello for free
+              </NavLink>
+            </>
+          )}
         </div>
       </div>
     </nav>
