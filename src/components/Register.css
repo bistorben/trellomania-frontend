@@ -1,0 +1,84 @@
+.Register {
+  padding: 2rem;
+  width: 400px;
+  margin: 8rem auto;
+  box-shadow: rgba(9, 30, 66, 0.15) 0px 0.5rem 1rem 0px;
+  border-radius: 0.5rem;
+
+  & h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #081e42;
+    font-weight: 500;
+  }
+  & form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    & input {
+      padding: var(--p-2);
+      width: 100%;
+      background-color: rgb(250, 251, 252);
+      border: 2px solid rgb(223, 225, 230);
+      border-radius: 0.3rem;
+      font-size: 16px;
+      /* line-height: 1.6; */
+      &::placeholder {
+        color: #97a0af;
+      }
+    }
+
+    & button {
+      padding: var(--p-2);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    & .btn-invalid {
+      background-color: rgb(235, 236, 250);
+      color: rgb(122, 134, 154);
+    }
+    & .btn-valid {
+      background-color: rgb(54, 179, 126);
+      color: white;
+
+      &:hover {
+        background-color: rgb(87, 217, 163);
+      }
+
+      /* // style={{
+        //   backgroundColor: isFormValid
+        //     ? ""
+        //     : "rgb(235, 236, 250)",
+        //   color: isFormValid ? "white" : "",
+        // }} */
+    }
+    & a {
+      text-align: center;
+      text-decoration: none;
+      color: #0747a6;
+      &:hover {
+        text-decoration: underline;
+      }
+      &:visited {
+        color: #0747a6;
+      }
+    }
+    & .err-wrapper {
+      display: flex;
+      gap: 0.5rem;
+      color: rgb(206, 11, 11);
+      font-size: 16px;
+    }
+  }
+}
+
+#ballons {
+  & img {
+    position: absolute;
+    right: 10rem;
+    bottom: -10rem;
+    width: 300px;
+  }
+}

@@ -1,5 +1,8 @@
-import { useState } from "react";
+import "./Register.css";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { TbExclamationCircle } from "react-icons/tb";
+
 import axios from "axios";
 
 const Register = () => {
@@ -7,7 +10,9 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [err, setError] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [err, setError] = useState({});
+  const emailInputRef = useRef(null);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -24,10 +29,16 @@ const Register = () => {
       setSubmitted(true);
       console.log(response.data);
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.response.data);
       console.log(err.response ? err.response.data : err);
     }
   };
+
+  useEffect(() => {
+    const allInputsFilled = userName.length > 1 && email && password.length > 7;
+    const validEmail = emailInputRef.current.checkValidity();
+    setIsFormValid(allInputsFilled && validEmail);
+  }, [userName, email, password]);
   // --------------------------------------------------------
   // ---------- version with fetch instead axios ------------
   // --------------------------------------------------------
@@ -80,38 +91,62 @@ const Register = () => {
 
   return (
     <>
-      <h1>Register</h1>
-      {!submitted ? (
-        <form onSubmit={submitHandler}>
-          <input
-            type="text"
-            placeholder="user name"
-            id="userName"
-            value={userName}
-            onChange={userNameHandler}
-          />
-          <input
-            type="email"
-            placeholder="e-mail"
-            value={email}
-            onChange={emailHandler}
-          />
-          <input
-            type="password"
-            placeholder="password"
-            value={password}
-            onChange={passwordHandler}
-          />
+      <section className="Register">
+        <h1>Sign up for your account</h1>
+        {!submitted ? (
+          <form onSubmit={submitHandler}>
+            <input
+              type="text"
+              placeholder="User name*"
+              id="userName"
+              value={userName}
+              onChange={userNameHandler}
+              required
+              minLength={2}
+              style={
+                err.field === "userName" ? { border: "2px solid red" } : null
+              }
+            />
+            <input
+              type="email"
+              placeholder="E-mail*"
+              value={email}
+              onChange={emailHandler}
+              ref={emailInputRef}
+              required
+              style={err.field === "email" ? { border: "2px solid red" } : null}
+            />
+            <input
+              type="password"
+              placeholder="Password*"
+              value={password}
+              onChange={passwordHandler}
+              required
+              minLength={8}
+            />
 
-          <button>submit</button>
-          <p>{err}</p>
-        </form>
-      ) : (
-        <>
-          <h2>YEAH</h2>
-          <Link to="/login">login</Link>
-        </>
-      )}
+            <button className={isFormValid ? "btn-valid" : "btn-invalid"}>
+              Continue
+            </button>
+            <Link to="/login">Already have an account? Log In</Link>
+            {err.message && (
+              <div className="err-wrapper">
+                <TbExclamationCircle />
+
+                <p>{err.message}</p>
+              </div>
+            )}
+          </form>
+        ) : (
+          <>
+            <h2>YEAH</h2>
+            <Link to="/login">login</Link>
+          </>
+        )}
+      </section>
+      <div id="ballons">
+        <img src="/luftballon.jpg" alt="" />
+      </div>
     </>
   );
 };

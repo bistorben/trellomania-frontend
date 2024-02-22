@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
 
   const [authUser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log("AuthProvider", loggedIn);
 
   const value = {
     authUser,
@@ -21,7 +20,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("Ich bin im useEffect");
     const getData = async () => {
       try {
         const response = await axios.get(
@@ -34,7 +32,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
         console.log(response.data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         setLoggedIn(false);
         setLoading(false);
       }

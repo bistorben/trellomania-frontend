@@ -28,5 +28,11 @@
 
   /* root styes */
   font-family: var(--primary-font);
+
+  /* this was a bad idea, we have to fix that later  */
   font-size: 0.875rem;
+}
+
+body {
+  overflow-y: hidden;
 }
