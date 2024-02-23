@@ -1,12 +1,21 @@
-import { useContext, useState } from "react";
+import "./Login.css";
+import "../common.css";
+import { useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthContext.jsx";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setLoggedIn } = useContext(AuthContext);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const emailInputRef = useRef(null);
+  const { loggedIn, setLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  if (loggedIn) {
+    navigate("/dashboard");
+  }
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -25,6 +34,8 @@ const Login = () => {
       );
       console.log(response.data);
       setLoggedIn(true);
+
+      console.log("loggedIn nach setMethode", loggedIn);
     } catch (err) {
       console.log(err);
     }
@@ -32,6 +43,12 @@ const Login = () => {
     console.log("nice try");
     // e.target.reset();
   };
+
+  useEffect(() => {
+    setIsFormValid(
+      emailInputRef.current.checkValidity() && password.length > 0
+    );
+  }, [email, password]);
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -42,24 +59,30 @@ const Login = () => {
   };
 
   return (
-    <>
-      <h1>Login</h1>
+    <section className="Login wrapper-form-section ">
+      <h1>Log in to your account</h1>
       <form onSubmit={submitHandler}>
         <input
           type="email"
-          placeholder="email"
+          placeholder="E-mail"
           value={email}
           onChange={emailHandler}
+          required
+          ref={emailInputRef}
         />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           value={password}
           onChange={passwordHandler}
+          required
         />
-        <button>submit</button>
+        <button className={isFormValid ? "btn-valid" : "btn-invalid"}>
+          Log in
+        </button>
+        <Link to="/register">No Account? Please register!</Link>
       </form>
-    </>
+    </section>
   );
 };
 

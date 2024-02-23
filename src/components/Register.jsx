@@ -1,4 +1,5 @@
 import "./Register.css";
+import "../common.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { TbExclamationCircle } from "react-icons/tb";
@@ -36,7 +37,9 @@ const Register = () => {
 
   useEffect(() => {
     const allInputsFilled = userName.length > 1 && email && password.length > 7;
+
     const validEmail = emailInputRef.current.checkValidity();
+
     setIsFormValid(allInputsFilled && validEmail);
   }, [userName, email, password]);
   // --------------------------------------------------------
@@ -91,56 +94,66 @@ const Register = () => {
 
   return (
     <>
-      <section className="Register">
-        <h1>Sign up for your account</h1>
+      <section className="Register wrapper-form-section">
         {!submitted ? (
-          <form onSubmit={submitHandler}>
-            <input
-              type="text"
-              placeholder="User name*"
-              id="userName"
-              value={userName}
-              onChange={userNameHandler}
-              required
-              minLength={2}
-              style={
-                err.field === "userName" ? { border: "2px solid red" } : null
-              }
-            />
-            <input
-              type="email"
-              placeholder="E-mail*"
-              value={email}
-              onChange={emailHandler}
-              ref={emailInputRef}
-              required
-              style={err.field === "email" ? { border: "2px solid red" } : null}
-            />
-            <input
-              type="password"
-              placeholder="Password*"
-              value={password}
-              onChange={passwordHandler}
-              required
-              minLength={8}
-            />
+          <>
+            <h1>Sign up for your account</h1>
+            <form onSubmit={submitHandler}>
+              <input
+                type="text"
+                placeholder="User name*"
+                id="userName"
+                value={userName}
+                onChange={userNameHandler}
+                required
+                minLength={2}
+                style={
+                  err.field === "userName" ? { border: "2px solid red" } : null
+                }
+              />
+              <input
+                type="email"
+                placeholder="E-mail*"
+                value={email}
+                onChange={emailHandler}
+                ref={emailInputRef}
+                required
+                style={
+                  err.field === "email" ? { border: "2px solid red" } : null
+                }
+              />
+              <input
+                type="password"
+                placeholder="Password*"
+                value={password}
+                onChange={passwordHandler}
+                required
+                minLength={8}
+              />
 
-            <button className={isFormValid ? "btn-valid" : "btn-invalid"}>
-              Continue
-            </button>
-            <Link to="/login">Already have an account? Log In</Link>
-            {err.message && (
-              <div className="err-wrapper">
-                <TbExclamationCircle />
+              <button className={isFormValid ? "btn-valid" : "btn-invalid"}>
+                Continue
+              </button>
+              <Link to="/login">Already have an account? Log In</Link>
+              {err.message && (
+                <div className="err-wrapper">
+                  <TbExclamationCircle />
 
-                <p>{err.message}</p>
-              </div>
-            )}
-          </form>
+                  <p>{err.message}</p>
+                </div>
+              )}
+            </form>
+          </>
         ) : (
           <>
-            <h2>YEAH</h2>
-            <Link to="/login">login</Link>
+            <h1>You have successfully registered</h1>
+            <p>
+              Welcome to Trellomania, the ultimate to-do app where productivity
+              meets fun! 🌟 Your registration is the first step on a thrilling
+              journey to conquer your tasks like never before. Let's get started
+              and make things happen in Trellomania style!
+            </p>
+            <Link to="/login">Log in to dive in!</Link>
           </>
         )}
       </section>
