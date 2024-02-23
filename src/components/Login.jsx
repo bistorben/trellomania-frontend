@@ -4,11 +4,13 @@ import { useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
+import { TbExclamationCircle } from "react-icons/tb";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
+  const [err, setErr] = useState("");
   const emailInputRef = useRef(null);
   const { loggedIn, setLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -37,6 +39,7 @@ const Login = () => {
 
       console.log("loggedIn nach setMethode", loggedIn);
     } catch (err) {
+      setErr(err.response.data.message);
       console.log(err);
     }
 
@@ -81,6 +84,12 @@ const Login = () => {
           Log in
         </button>
         <Link to="/register">No Account? Please register!</Link>
+        {err && (
+          <div className="err-wrapper">
+            <TbExclamationCircle />
+            <p>{err}</p>
+          </div>
+        )}
       </form>
     </section>
   );
