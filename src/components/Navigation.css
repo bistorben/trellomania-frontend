@@ -1,0 +1,141 @@
+/* nav styling for logged in AND out state */
+
+.Navigation {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+
+  & .wrapper-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    & .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-size: 18px;
+      padding: var(--p-1);
+    }
+  }
+
+  & .wrapper-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    & .search {
+      display: flex;
+      align-items: center;
+      position: relative;
+      & label {
+        position: absolute;
+        left: 10px;
+        /* & font-size: 1rem; */
+        & .search-icon {
+          font-size: 16px;
+        }
+      }
+      & input {
+        color: white;
+        padding: var(--p-1);
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        outline: none;
+        background-color: hsla(0, 0%, 100%, 0.16);
+        text-indent: 1.7rem;
+        &::placeholder {
+          color: #ffffff;
+        }
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.4);
+        }
+      }
+    }
+
+    & .user-panel {
+      /* & .user-icon {
+        background-color: #00a3bf;
+        padding: var(--p-1);
+        border-radius: 50%;
+        border: none;
+      } */
+    }
+  }
+  & .nav-link {
+    display: flex;
+    gap: 1rem;
+  }
+  & a {
+    color: var(--primary-navigation-color);
+    text-decoration: none;
+  }
+}
+
+/* nav styling for logged out */
+
+.nav-logged-out {
+  background-color: var(--primary-navigation-color);
+  color: #172b4d;
+  &:hover {
+    box-shadow: 0px 8px 12px #091e4226, 0px 0px 1px #091e424f;
+    transition: 0.5s ease;
+  }
+
+  & a {
+    color: #172b4d;
+  }
+
+  & .nav-link {
+    & a:hover {
+      color: #0c66e4;
+    }
+  }
+
+  & .wrapper-nav-left {
+    margin-left: var(--m-1);
+  }
+
+  & .user-panel {
+    font-size: 1.4rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    letter-spacing: 0.7px;
+    a {
+      padding: 1.3rem 2.5rem;
+    }
+    & #login-link:hover {
+      text-decoration: underline;
+    }
+    & #register-link {
+      background-color: blue;
+      color: white;
+      &:hover {
+        background-color: rgb(7, 71, 166);
+      }
+    }
+  }
+}
+
+/* nav styling for logged in */
+
+.nav-logged-in {
+  background-color: var(--primary-background);
+  color: var(--primary-navigation-color);
+  padding: var(--p-1);
+
+  .logo {
+    &:hover {
+      background-color: var(--primary-horizontal-hover-color);
+    }
+  }
+  a {
+    border-radius: 0.188rem;
+    padding: var(--p-1);
+    &:hover {
+      background-color: var(--primary-horizontal-hover-color);
+    }
+  }
+}

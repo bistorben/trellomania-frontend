@@ -1,0 +1,31 @@
+.Register {
+  & form {
+  }
+  & p {
+    line-height: 1.6;
+    letter-spacing: 0.4px;
+    text-align: justify;
+  }
+  & a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #0747a6;
+    margin-top: 1rem;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:visited {
+      color: #0747a6;
+    }
+  }
+}
+
+#ballons {
+  & img {
+    position: absolute;
+    right: 10rem;
+    bottom: -10rem;
+    width: 300px;
+  }
+}

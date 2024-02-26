@@ -1,0 +1,20 @@
+.Header {
+  & .teaser-student-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.7px;
+    background-color: #deebff;
+    height: 60px;
+    text-decoration: none;
+    color: #091e42;
+    & #github-icon {
+      font-size: 2rem;
+    }
+    &:hover {
+      background-color: #deebffc4;
+    }
+  }
+}
