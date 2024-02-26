@@ -1,0 +1,10 @@
+.Logout {
+  & p {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 16px;
+  }
+  & button {
+    width: 100%;
+  }
+}
