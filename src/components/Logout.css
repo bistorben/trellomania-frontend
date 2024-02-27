@@ -1,10 +1,28 @@
 .Logout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1rem;
   & p {
-    text-align: center;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     font-size: 16px;
   }
-  & button {
+  & .btn-wrapper {
+    display: flex;
     width: 100%;
+    justify-content: space-evenly;
+    & button {
+      padding: 6px 12px;
+      border-radius: 3px;
+      background-color: #091e420f;
+      color: #172b4d;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      &:hover {
+        background-color: #091e4224;
+      }
+    }
   }
 }

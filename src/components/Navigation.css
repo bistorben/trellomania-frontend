@@ -125,12 +125,14 @@
   background-color: var(--primary-background);
   color: var(--primary-navigation-color);
   padding: var(--p-1);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.16);
 
   .logo {
     &:hover {
       background-color: var(--primary-horizontal-hover-color);
     }
   }
+
   a {
     border-radius: 0.188rem;
     padding: var(--p-1);

@@ -1,0 +1,10 @@
+.logged-in-wrapper {
+  display: flex;
+  background-color: #cd5a91;
+  flex-grow: 1;
+  color: #ffffff;
+}
+
+.logged-in-main {
+  flex-grow: 1;
+}

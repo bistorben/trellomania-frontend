@@ -13,11 +13,15 @@ const Login = () => {
   const [err, setErr] = useState("");
   const emailInputRef = useRef(null);
   const { loggedIn, setLoggedIn } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
-  if (loggedIn) {
-    navigate("/dashboard");
-  }
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/dashboard");
+    }
+  }, [loggedIn, navigate]);
+
   const submitHandler = async (e) => {
     e.preventDefault();
 

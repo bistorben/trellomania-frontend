@@ -1,7 +1,15 @@
+import BoardOverview from "./BoardOverview.jsx";
+import "./Dashboard.css";
+
 const Dashboard = () => {
   return (
     <>
-      <h1>USER DASHBOARD</h1>
+      <section className="dashboard-header">
+        <h1>My User Dasboard</h1>
+      </section>
+      <section className="dashboard-main">
+        <BoardOverview />
+      </section>
     </>
   );
 };

@@ -1,12 +1,21 @@
 import "./Navigation.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { SiTrello } from "react-icons/si";
 import { IoIosSearch } from "react-icons/io";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext.jsx";
+import { useModal } from "../contexts/ModalContext.jsx";
+import Logout from "./Logout.jsx";
 
 const Navigation = () => {
   const { loggedIn } = useContext(AuthContext);
+  const { setIsOpen, setModalContent } = useModal();
+
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    setModalContent(<Logout />);
+    setIsOpen(true);
+  };
 
   return (
     <nav
@@ -36,7 +45,9 @@ const Navigation = () => {
             JE
           </NavLink> */}
           {loggedIn ? (
-            <NavLink to="/logout">Logout</NavLink>
+            <a href="#" onClick={logoutHandler}>
+              Logout
+            </a>
           ) : (
             <>
               <NavLink to="/login" id="login-link">

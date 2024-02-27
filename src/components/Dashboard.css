@@ -1,0 +1,8 @@
+.dashboard-header {
+  background-color: #9c456e;
+  padding: 0.8rem;
+}
+.dashboard-main {
+  flex-grow: 1;
+  padding: 0.8rem;
+}

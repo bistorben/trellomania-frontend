@@ -1,0 +1,10 @@
+.BoardOverview {
+  & .board-card {
+    width: 250px;
+    height: 150px;
+    background-color: rgba(128, 128, 128, 0.703);
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+  }
+}
