@@ -44,7 +44,7 @@ const Navigation = () => {
           {/* <NavLink to="/register" className="user-icon">
             JE
           </NavLink> */}
-          {loggedIn ? (
+          {!loggedIn ? (
             <a href="#" onClick={logoutHandler}>
               Logout
             </a>
