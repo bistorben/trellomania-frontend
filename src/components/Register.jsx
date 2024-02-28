@@ -1,13 +1,13 @@
 import "./Register.css";
 import "../common.css";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TbExclamationCircle } from "react-icons/tb";
 
 import axios from "axios";
 
 const Register = () => {
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("asdasdasdasd");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);

@@ -2,19 +2,23 @@ import axios from "axios";
 import "./Logout.css";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../contexts/AuthContext.jsx";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate, createBrowserRouter } from "react-router-dom";
 import { useModal } from "../contexts/ModalContext.jsx";
+// import Home from "../components/Home.jsx";
 
 const Logout = () => {
   const { loggedIn, setLoggedIn } = useContext(AuthContext);
   const { setIsOpen } = useModal();
-  // const navigate = useNavigate();
+
+  // const router = createBrowserRouter([{ path: "/", element: <Home /> }]);
+  //const navigate = useNavigate();
 
   // useEffect(() => {
   //   if (!loggedIn) {
-  //     navigate("/");
+  //     router.navigate("/");
+  //     //navigate("/");
   //   }
-  // }, [loggedIn, navigate]);
+  // }, [loggedIn]);
 
   const logoutHandler = async () => {
     try {
@@ -27,7 +31,7 @@ const Logout = () => {
       );
       setLoggedIn(false);
       setIsOpen(false);
-      navigate("/");
+
       console.log(response.data);
     } catch (err) {
       console.log(err);

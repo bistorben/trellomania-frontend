@@ -1,6 +1,23 @@
 .dashboard-header {
   background-color: #9c456e;
   padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  & button {
+    background-color: #dfe1e6;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 12px 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ffffff;
+    }
+  }
 }
 .dashboard-main {
   flex-grow: 1;

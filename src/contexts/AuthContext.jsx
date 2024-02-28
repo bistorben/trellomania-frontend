@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     setLoading,
   };
 
+  console.log("authUSer", authUser);
   useEffect(() => {
     const getData = async () => {
       try {
@@ -28,9 +29,10 @@ export const AuthProvider = ({ children }) => {
             withCredentials: true, // Für das Senden von Cookies bei Cross-Origin-Anfragen
           }
         );
+
         setLoggedIn(true);
         setLoading(false);
-        console.log(response.data);
+        setAuthUser(response.data);
       } catch (err) {
         // console.log(err);
         setLoggedIn(false);
