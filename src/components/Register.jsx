@@ -7,7 +7,7 @@ import { TbExclamationCircle } from "react-icons/tb";
 import axios from "axios";
 
 const Register = () => {
-  const [userName, setUserName] = useState("asdasdasdasd");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitted, setSubmitted] = useState(false);
