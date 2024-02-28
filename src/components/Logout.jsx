@@ -7,7 +7,7 @@ import { useModal } from "../contexts/ModalContext.jsx";
 // import Home from "../components/Home.jsx";
 
 const Logout = () => {
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
+  const { loggedIn, setLoggedIn, setAuthUser } = useContext(AuthContext);
   const { setIsOpen } = useModal();
 
   // const router = createBrowserRouter([{ path: "/", element: <Home /> }]);
@@ -31,6 +31,7 @@ const Logout = () => {
       );
       setLoggedIn(false);
       setIsOpen(false);
+      setAuthUser(null);
 
       console.log(response.data);
     } catch (err) {
