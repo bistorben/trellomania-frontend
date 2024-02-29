@@ -13,7 +13,19 @@ const Register = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
   const [err, setError] = useState({});
+  const [validationCounter, setValidationCounter] = useState(0);
   const emailInputRef = useRef(null);
+  const userNameInputRef = useRef(null);
+
+  useEffect(() => {
+    if (submitted) return;
+
+    if (err.field === "userName") {
+      userNameInputRef.current.focus();
+    } else if (err.field === "email") {
+      emailInputRef.current.focus();
+    }
+  }, [err.field, validationCounter, submitted]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -30,6 +42,7 @@ const Register = () => {
       setSubmitted(true);
       console.log(response.data);
     } catch (err) {
+      setValidationCounter(validationCounter + 1);
       setError(err.response.data);
       console.log(err.response ? err.response.data : err);
     }
@@ -107,9 +120,7 @@ const Register = () => {
                 onChange={userNameHandler}
                 required
                 minLength={2}
-                style={
-                  err.field === "userName" ? { border: "2px solid red" } : null
-                }
+                ref={userNameInputRef}
               />
               <input
                 type="email"
@@ -118,9 +129,6 @@ const Register = () => {
                 onChange={emailHandler}
                 ref={emailInputRef}
                 required
-                style={
-                  err.field === "email" ? { border: "2px solid red" } : null
-                }
               />
               <input
                 type="password"
