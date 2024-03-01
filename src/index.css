@@ -34,7 +34,8 @@
 }
 
 body {
-  overflow-y: hidden;
+  /* besser auf das parent legen */
+  overflow-x: hidden;
 }
 
 #root {

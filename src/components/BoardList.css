@@ -1,0 +1,33 @@
+.BoardList {
+  padding: 2rem;
+  /* flex-grow: 1; */
+  height: 100%;
+  overflow-x: auto;
+
+  & .list-container {
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+    color: hsl(218, 54%, 20%);
+    height: 100%;
+    /* overflow-x: scroll; */
+
+    & li {
+      width: 300px;
+
+      flex-shrink: 0;
+
+      & .li-item-container {
+        border-radius: 12px;
+        background-color: #f1f2f4;
+        padding: 1rem;
+
+        & .li-header {
+        }
+        & .li-cards-container {
+          list-style-type: none;
+        }
+      }
+    }
+  }
+}

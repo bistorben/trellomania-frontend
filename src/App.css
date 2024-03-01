@@ -7,4 +7,9 @@
 
 .logged-in-main {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* breite für overflow der li-items im board notwendig. Habe dazu Fragen.... */
+  width: 75%;
+  /* overflow-x: auto; */
 }

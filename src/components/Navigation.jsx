@@ -2,7 +2,7 @@ import "./Navigation.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SiTrello } from "react-icons/si";
 import { IoIosSearch } from "react-icons/io";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { AuthContext } from "../contexts/AuthContext.jsx";
 import { useModal } from "../contexts/ModalContext.jsx";
 import Logout from "./Logout.jsx";

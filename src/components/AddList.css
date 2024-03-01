@@ -1,0 +1,14 @@
+.AddList {
+  width: 300px;
+  background-color: #ffffff3d;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #ffffff;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  &:hover {
+    background-color: #a6c5e229;
+    cursor: pointer;
+  }
+}
