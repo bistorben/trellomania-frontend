@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import "./AddList.css";
 import { FaPlus } from "react-icons/fa";
+import axios from "axios";
 
-const AddList = () => {
+const AddList = ({ allLists, setAllLists }) => {
+  const [listTitle, setListTitle] = useState("");
   const [showInput, setShowInput] = useState(false);
   const inputRef = useRef(null);
 
@@ -10,8 +12,22 @@ const AddList = () => {
     setShowInput(!showInput);
   };
 
-  const submitHandler = (e) => {
+  const inputHandler = (e) => {
+    setListTitle(e.target.value);
+  };
+
+  const submitHandler = async (e) => {
     e.preventDefault();
+    const listData = {
+      title: listTitle,
+    };
+    try {
+      const response = await axios.post("http://localhost:3000/list", listData);
+      console.log(response.data);
+      setAllLists((prevList) => [...prevList, response.data]);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -40,7 +56,12 @@ const AddList = () => {
 
   const form = (
     <form className="add-list-form" onSubmit={submitHandler}>
-      <input ref={inputRef} placeholder="Enter list title ..." />
+      <input
+        ref={inputRef}
+        value={listTitle}
+        onChange={inputHandler}
+        placeholder="Enter list title ..."
+      />
       <div className="form-control">
         <button>Add list</button>
         <button type="button" onClick={showFormHandler}>

@@ -10,7 +10,6 @@ const BoardOverview = ({ boardList, setBoardList }) => {
       try {
         const response = await axios.get("http://localhost:3000/board");
 
-        //Hier wird ímmer ein neues Array in boardList geladen
         setBoardList(response.data);
       } catch (err) {
         console.log(err.response);
