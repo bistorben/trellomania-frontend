@@ -6,6 +6,7 @@ const Modal = ({ closeModal, children }) => {
       closeModal();
     }
   };
+
   return (
     <div className="Modal" onClick={handleModalOutsideClick}>
       <div className="modal-wrapper">

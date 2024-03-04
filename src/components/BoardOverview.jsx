@@ -10,14 +10,14 @@ const BoardOverview = () => {
     const getData = async () => {
       try {
         const response = await axios.get("http://localhost:3000/board");
-        console.log(response.data);
+        console.log("LOG", response.data);
         setBoardList(response.data);
       } catch (err) {
         console.log(err.response);
       }
     };
     getData();
-  }, [boardList]);
+  }, []);
 
   return (
     <section className="BoardOverview">
