@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
     setLoading,
   };
 
-  console.log("authUSer", authUser);
   useEffect(() => {
     const getData = async () => {
       try {
@@ -34,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
         setAuthUser(response.data);
       } catch (err) {
-        // console.log(err);
+        console.log(err);
         setLoggedIn(false);
         setLoading(false);
       }

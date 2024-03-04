@@ -4,7 +4,6 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
   const { loggedIn, loading } = useContext(AuthContext);
-  console.log("isloggedin", loggedIn);
 
   if (loading) {
     return <div>loading...</div>;

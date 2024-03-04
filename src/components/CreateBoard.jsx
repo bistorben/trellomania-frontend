@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import "./CreateBoard.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext.jsx";
 
-const CreateBoard = () => {
+const CreateBoard = ({ boardList, setBoardList }) => {
   const [title, setTitle] = useState("");
   const { authUser } = useContext(AuthContext);
 
@@ -15,7 +16,11 @@ const CreateBoard = () => {
         "http://localhost:3000/board",
         boardData
       );
-      console.log(response.data);
+      const newBoard = response.data;
+      console.log(newBoard);
+      setBoardList((prevBoardList) => [...prevBoardList, newBoard]);
+      // setBoardList(...boardList, newBoard]);
+      // setBoardList([...boardList, response.data]);
     } catch (err) {
       console.log(err);
     }

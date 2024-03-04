@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useModal } from "../contexts/ModalContext.jsx";
 import BoardOverview from "./BoardOverview.jsx";
 import CreateBoard from "./CreateBoard.jsx";
@@ -9,12 +9,13 @@ import { AuthContext } from "../contexts/AuthContext.jsx";
 const Dashboard = () => {
   const { setIsOpen, setModalContent } = useModal();
   const { authUser } = useContext(AuthContext);
-
-  console.log("authUser from dashboard", authUser);
+  const [boardList, setBoardList] = useState([]);
 
   const createHandler = () => {
     setIsOpen(true);
-    setModalContent(<CreateBoard />);
+    setModalContent(
+      <CreateBoard boardList={boardList} setBoardList={setBoardList} />
+    );
   };
 
   return (
@@ -26,7 +27,7 @@ const Dashboard = () => {
         </button>
       </section>
       <section className="dashboard-main">
-        <BoardOverview />
+        <BoardOverview boardList={boardList} setBoardList={setBoardList} />
       </section>
     </>
   );
