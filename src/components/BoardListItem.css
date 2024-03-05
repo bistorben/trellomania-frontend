@@ -1,0 +1,31 @@
+.BoardListItem {
+  width: 272px;
+
+  flex-shrink: 0;
+
+  & .li-item-container {
+    border-radius: 12px;
+    background-color: #f1f2f4;
+    padding: 1rem;
+
+    & .li-header {
+      display: flex;
+      justify-content: space-between;
+      & .btn-delete {
+        border: none;
+        color: rgba(232, 72, 40, 0.962);
+        font-size: 16px;
+        cursor: pointer;
+        &:hover {
+          color: rgb(15, 157, 36);
+        }
+        &:active {
+          color: rgb(221, 215, 53);
+        }
+      }
+    }
+    & .li-cards-container {
+      list-style-type: none;
+    }
+  }
+}

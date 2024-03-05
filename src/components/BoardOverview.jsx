@@ -8,7 +8,9 @@ const BoardOverview = ({ boardList, setBoardList }) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/board");
+        const response = await axios.get("http://localhost:3000/board", {
+          withCredentials: true,
+        });
 
         setBoardList(response.data);
       } catch (err) {

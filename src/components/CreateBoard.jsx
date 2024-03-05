@@ -14,7 +14,10 @@ const CreateBoard = ({ boardList, setBoardList }) => {
     try {
       const response = await axios.post(
         "http://localhost:3000/board",
-        boardData
+        boardData,
+        {
+          withCredentials: true,
+        }
       );
       const newBoard = response.data;
       console.log(newBoard);

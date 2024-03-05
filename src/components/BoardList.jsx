@@ -1,15 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AddList from "./AddList.jsx";
 import "./BoardList.css";
 import axios from "axios";
+import BoardListItem from "./BoardListItem.jsx";
 
 const BoardList = () => {
   const [allLists, setAllLists] = useState([]);
+  const boardListRef = useRef(null);
+  const [listLengthChanged, setListLenghtChanged] = useState(false);
+
+  useEffect(() => {
+    if (listLengthChanged && boardListRef.current) {
+      boardListRef.current.scrollTo({
+        left: boardListRef.current.scrollWidth,
+        behavior: "smooth",
+      });
+      return;
+    }
+  }, [allLists.length]);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/list");
+        const response = await axios.get("http://localhost:3000/list", {
+          withCredentials: true,
+        });
 
         setAllLists(response.data);
       } catch (err) {
@@ -20,51 +35,15 @@ const BoardList = () => {
   }, []);
 
   return (
-    <section className="BoardList">
+    <section className="BoardList" ref={boardListRef}>
       <ul className="list-container">
-        {allLists.map((list) => (
-          <li>
-            <div className="li-item-container">
-              <div className="li-header">
-                <h4>{list.title}</h4>
-              </div>
-              <ul className="li-cards-container">
-                <li>any card</li>
-              </ul>
-              <div className="li-footer">
-                <button>add card</button>
-              </div>
-            </div>
-          </li>
-        ))}
-        {/* <li>
-          <div className="li-item-container">
-            <div className="li-header">
-              <h4>to do</h4>
-            </div>
-            <ul className="li-cards-container">
-              <li>any card</li>
-            </ul>
-            <div className="li-footer">
-              <button>add card</button>
-            </div>
-          </div>
-        </li>
+        <BoardListItem allLists={allLists} setAllLists={setAllLists} />
         <li>
-          <div className="li-item-container">
-            <div className="li-header">
-              <h4>to do</h4>
-            </div>
-            <ul className="li-cards-container">
-              <li>any card</li>
-            </ul>
-            <div className="li-footer">
-              <button>add card</button>
-            </div>
-          </div>
-        </li> */}
-        <li>
-          <AddList allLists={allLists} setAllLists={setAllLists} />
+          <AddList
+            allLists={allLists}
+            setAllLists={setAllLists}
+            setListLenghtChanged={setListLenghtChanged}
+          />
         </li>
       </ul>
     </section>

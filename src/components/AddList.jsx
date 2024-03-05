@@ -1,15 +1,16 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from "react";
 import "./AddList.css";
 import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 
-const AddList = ({ allLists, setAllLists }) => {
+const AddList = ({ allLists, setAllLists, setListLenghtChanged }) => {
   const [listTitle, setListTitle] = useState("");
   const [showInput, setShowInput] = useState(false);
   const inputRef = useRef(null);
 
   const showFormHandler = () => {
-    setShowInput(!showInput);
+    setShowInput(true);
   };
 
   const inputHandler = (e) => {
@@ -22,9 +23,17 @@ const AddList = ({ allLists, setAllLists }) => {
       title: listTitle,
     };
     try {
-      const response = await axios.post("http://localhost:3000/list", listData);
+      const response = await axios.post(
+        "http://localhost:3000/list",
+        listData,
+        {
+          withCredentials: true,
+        }
+      );
       console.log(response.data);
       setAllLists((prevList) => [...prevList, response.data]);
+      setListLenghtChanged(true);
+      setListTitle("");
     } catch (err) {
       console.log(err);
     }
@@ -61,6 +70,8 @@ const AddList = ({ allLists, setAllLists }) => {
         value={listTitle}
         onChange={inputHandler}
         placeholder="Enter list title ..."
+        // instead of maxLength textarea is a better choice
+        maxLength={18}
       />
       <div className="form-control">
         <button>Add list</button>
