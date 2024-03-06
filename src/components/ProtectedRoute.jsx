@@ -4,13 +4,12 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
   const { loggedIn, loading } = useContext(AuthContext);
-  console.log("isloggedin", loggedIn);
 
   if (loading) {
     return <div>loading...</div>;
   }
 
-  return loggedIn ? children : <Navigate to="/auth" replace />;
+  return loggedIn ? children : <Navigate to="/register" replace />;
 };
 
 export default ProtectedRoute;

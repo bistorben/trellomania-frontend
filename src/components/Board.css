@@ -1,0 +1,10 @@
+.board-header {
+  background-color: #9c456e;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.board-main {
+  flex-grow: 1;
+}

@@ -28,11 +28,12 @@ export const AuthProvider = ({ children }) => {
             withCredentials: true, // Für das Senden von Cookies bei Cross-Origin-Anfragen
           }
         );
+
         setLoggedIn(true);
         setLoading(false);
-        console.log(response.data);
+        setAuthUser(response.data);
       } catch (err) {
-        // console.log(err);
+        console.log(err);
         setLoggedIn(false);
         setLoading(false);
       }

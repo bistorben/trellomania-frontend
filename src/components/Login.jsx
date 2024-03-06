@@ -12,12 +12,16 @@ const Login = () => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [err, setErr] = useState("");
   const emailInputRef = useRef(null);
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
+  const { loggedIn, setLoggedIn, setAuthUser } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
-  if (loggedIn) {
-    navigate("/dashboard");
-  }
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/dashboard");
+    }
+  }, [loggedIn, navigate]);
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -34,10 +38,9 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
-      setLoggedIn(true);
 
-      console.log("loggedIn nach setMethode", loggedIn);
+      setLoggedIn(true);
+      setAuthUser(response.data.tokenPayload)
     } catch (err) {
       setErr(err.response.data.message);
       console.log(err);

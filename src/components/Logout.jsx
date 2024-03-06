@@ -1,16 +1,25 @@
 import axios from "axios";
 import "./Logout.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../contexts/AuthContext.jsx";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate, createBrowserRouter } from "react-router-dom";
+import { useModal } from "../contexts/ModalContext.jsx";
+// import Home from "../components/Home.jsx";
 
 const Logout = () => {
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { loggedIn, setLoggedIn, setAuthUser } = useContext(AuthContext);
+  const { setIsOpen } = useModal();
 
-  if (!loggedIn) {
-    navigate("/");
-  }
+  // const router = createBrowserRouter([{ path: "/", element: <Home /> }]);
+  //const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (!loggedIn) {
+  //     router.navigate("/");
+  //     //navigate("/");
+  //   }
+  // }, [loggedIn]);
+
   const logoutHandler = async () => {
     try {
       const response = await axios.post(
@@ -21,6 +30,8 @@ const Logout = () => {
         }
       );
       setLoggedIn(false);
+      setIsOpen(false);
+      setAuthUser(null);
 
       console.log(response.data);
     } catch (err) {
@@ -28,13 +39,14 @@ const Logout = () => {
     }
   };
   return (
-    <section className="Logout wrapper-form-section">
+    <section className="Logout">
       <h1>LOG OUT</h1>
       <p>Are you sure, you want to log out?</p>
-
-      <button onClick={logoutHandler} className="btn-valid">
-        LOG OUT
-      </button>
+      <div className="btn-wrapper">
+        <button onClick={logoutHandler} className="btn-valid">
+          LOG OUT
+        </button>
+      </div>
     </section>
   );
 };

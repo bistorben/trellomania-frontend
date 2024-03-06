@@ -34,5 +34,12 @@
 }
 
 body {
-  overflow-y: hidden;
+  /* besser auf das parent legen */
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

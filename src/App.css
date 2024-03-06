@@ -1,0 +1,15 @@
+.logged-in-wrapper {
+  display: flex;
+  background-color: #cd5a91;
+  flex-grow: 1;
+  color: #ffffff;
+}
+
+.logged-in-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* breite für overflow der li-items im board notwendig. Habe dazu Fragen.... */
+  width: 75%;
+  /* overflow-x: auto; */
+}
