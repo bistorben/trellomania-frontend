@@ -3,11 +3,13 @@ import { useEffect, useRef, useState } from "react";
 import "./AddList.css";
 import { FaPlus } from "react-icons/fa";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const AddList = ({ allLists, setAllLists, setListLenghtChanged }) => {
   const [listTitle, setListTitle] = useState("");
   const [showInput, setShowInput] = useState(false);
   const inputRef = useRef(null);
+  const { boardId } = useParams();
 
   const showFormHandler = () => {
     setShowInput(true);
@@ -21,6 +23,7 @@ const AddList = ({ allLists, setAllLists, setListLenghtChanged }) => {
     e.preventDefault();
     const listData = {
       title: listTitle,
+      boardId,
     };
     try {
       const response = await axios.post(

@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "board",
+        path: "board/:boardId",
         element: (
           <ProtectedRoute>
             <Board />

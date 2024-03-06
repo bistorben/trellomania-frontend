@@ -3,11 +3,13 @@ import AddList from "./AddList.jsx";
 import "./BoardList.css";
 import axios from "axios";
 import BoardListItem from "./BoardListItem.jsx";
+import { useParams } from "react-router-dom";
 
 const BoardList = () => {
   const [allLists, setAllLists] = useState([]);
   const boardListRef = useRef(null);
   const [listLengthChanged, setListLenghtChanged] = useState(false);
+  const { boardId } = useParams();
 
   useEffect(() => {
     if (listLengthChanged && boardListRef.current) {
@@ -22,9 +24,12 @@ const BoardList = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/list", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `http://localhost:3000/list/${boardId}`,
+          {
+            withCredentials: true,
+          }
+        );
 
         setAllLists(response.data);
       } catch (err) {

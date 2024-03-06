@@ -136,7 +136,8 @@ const Register = () => {
                 value={password}
                 onChange={passwordHandler}
                 required
-                minLength={8}
+                // just for testing cases very short
+                minLength={3}
               />
 
               <button className={isFormValid ? "btn-valid" : "btn-invalid"}>
