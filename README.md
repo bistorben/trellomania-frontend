@@ -1,8 +1,19 @@
-# React + Vite
+# Project for learning and application purposes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+As part of our training with the Digital Career Institute (DCI) to become a full stack web developer, we are building a Trello-like application in the MERN stack for the final project over a period of approx. 7 weeks.
 
-Currently, two official plugins are available:
+Trello serves as a source of inspiration and a rough design template.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+We are slowly looking around on the job market, please contact us if you are interested or have any questions.
+
+YEAH!
+
+## Below you can find the backend repository:
+
+https://github.com/bistorben/trellomania-backend
+
+LinkedIn:
+
+Torben Bis:
+
+
