@@ -14,7 +14,13 @@ https://github.com/bistorben/trellomania-backend
 
 ## LinkedIn:
 
-Torben Bis: https://www.linkedin.com/in/torben-b-98955068/
-Julia Erbis: -- tba ---
+Torben Bis: 
+
+https://www.linkedin.com/in/torben-b-98955068/
+
+
+Julia Erbis: 
+
+-- tba ---
 
 
