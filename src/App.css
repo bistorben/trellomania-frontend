@@ -5,6 +5,10 @@
   color: #ffffff;
 }
 
+.logged-out-main {
+  padding: 1rem;
+}
+
 .logged-in-main {
   flex-grow: 1;
   display: flex;

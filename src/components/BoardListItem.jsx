@@ -2,11 +2,15 @@
 import axios, { all } from "axios";
 import "./BoardListItem.css";
 import { FaRegTrashAlt } from "react-icons/fa";
-
 import AddCard from "./AddCard.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Card from "./Card.jsx";
+import { DragDropContext } from "react-beautiful-dnd";
 
 const BoardListItem = ({ list, setAllLists, isAddCard, setIsAddCard }) => {
+  const [allCards, setAllCards] = useState([]);
+
+  // currying
   const deleteHandler = (id) => async () => {
     try {
       const response = await axios.delete(`http://localhost:3000/list/${id}`, {
@@ -17,6 +21,23 @@ const BoardListItem = ({ list, setAllLists, isAddCard, setIsAddCard }) => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/card/${list._id}`,
+          {
+            withCredentials: true,
+          }
+        );
+        setAllCards(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getData();
+  }, []);
 
   return (
     <>
@@ -34,16 +55,20 @@ const BoardListItem = ({ list, setAllLists, isAddCard, setIsAddCard }) => {
               </button>
             </div>
           </div>
+
           <ul className="li-cards-container">
-            {/* <li>any card</li>
-              <li>any card</li>
-              <li>any card</li> */}
+            {allCards.map((card) => (
+              <Card key={card._id} title={card.title} />
+            ))}
           </ul>
+
           <div className="li-footer AddCard">
             <AddCard
               listId={list._id}
               isAddCard={isAddCard}
               setIsAddCard={setIsAddCard}
+              allCards={allCards}
+              setAllCards={setAllCards}
             />
           </div>
         </div>

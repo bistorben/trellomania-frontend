@@ -7,6 +7,9 @@
     border-radius: 12px;
     background-color: #f1f2f4;
     padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
     & .li-header {
       display: flex;
@@ -27,6 +30,9 @@
     }
     & .li-cards-container {
       list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
     & .li-footer {
     }

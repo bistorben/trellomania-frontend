@@ -22,7 +22,7 @@ function App() {
           </div>
         </>
       ) : (
-        <main>
+        <main className="logged-out-main">
           <Outlet />
         </main>
       )}

@@ -12,17 +12,12 @@ const Header = () => {
     <header className="Header">
       <Navigation />
       {!loggedIn && (
-        <Link
-          to="https://github.com/bistorben/trellomania-frontend"
-          target="_blank"
-          className="teaser-student-info"
-        >
+        <div className="header-teaser">
           <p>
-            This is a student project from Julia Erbis und Torben Bis - check
-            this project out on GitHub
+            This project is exclusively for learning purposes. Data will be
+            regularly deleted.
           </p>
-          <FaGithub id="github-icon" />
-        </Link>
+        </div>
       )}
     </header>
   );
