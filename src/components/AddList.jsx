@@ -12,7 +12,7 @@ const AddList = ({ allLists, setAllLists, setListLenghtChanged }) => {
   const { boardId } = useParams();
 
   const showFormHandler = () => {
-    setShowInput(true);
+    setShowInput(!showInput);
   };
 
   const inputHandler = (e) => {
@@ -21,24 +21,26 @@ const AddList = ({ allLists, setAllLists, setListLenghtChanged }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const listData = {
-      title: listTitle,
-      boardId,
-    };
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/list",
-        listData,
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(response.data);
-      setAllLists((prevList) => [...prevList, response.data]);
-      setListLenghtChanged(true);
-      setListTitle("");
-    } catch (err) {
-      console.log(err);
+    if (listTitle.trim() !== "") {
+      const listData = {
+        title: listTitle,
+        boardId,
+      };
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/list",
+          listData,
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(response.data);
+        setAllLists((prevList) => [...prevList, response.data]);
+        setListLenghtChanged(true);
+        setListTitle("");
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -76,6 +78,7 @@ const AddList = ({ allLists, setAllLists, setListLenghtChanged }) => {
         // instead of maxLength textarea is a better choice
         maxLength={18}
       />
+      {/* should be a seperate component, its used twiced: AddCard / AddList */}
       <div className="form-control">
         <button>Add list</button>
         <button type="button" onClick={showFormHandler}>

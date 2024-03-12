@@ -1,0 +1,24 @@
+.Card {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 1px 1px #091e4240, 0px 0px 1px #091e424f;
+  padding: 8px 12px;
+  /* & textarea {
+    width: 100%;
+
+
+    border: none;
+    resize: none;
+
+    min-height: 36px;
+    max-height: 160px;
+    &::placeholder {
+      font-size: 12px;
+      letter-spacing: 0.2px;
+    }
+    &:focus {
+      outline: none;
+    }
+  } */
+}

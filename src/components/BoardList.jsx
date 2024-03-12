@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 
 const BoardList = () => {
   const [allLists, setAllLists] = useState([]);
+  const [isAddCard, setIsAddCard] = useState({});
   const boardListRef = useRef(null);
   const [listLengthChanged, setListLenghtChanged] = useState(false);
   const { boardId } = useParams();
@@ -17,7 +18,7 @@ const BoardList = () => {
         left: boardListRef.current.scrollWidth,
         behavior: "smooth",
       });
-      return;
+      setListLenghtChanged(false);
     }
   }, [allLists.length]);
 
@@ -42,7 +43,16 @@ const BoardList = () => {
   return (
     <section className="BoardList" ref={boardListRef}>
       <ul className="list-container">
-        <BoardListItem allLists={allLists} setAllLists={setAllLists} />
+        {allLists.map((list) => (
+          <BoardListItem
+            key={list._id}
+            list={list}
+            setAllLists={setAllLists}
+            isAddCard={isAddCard}
+            setIsAddCard={setIsAddCard}
+          />
+        ))}
+
         <li>
           <AddList
             allLists={allLists}

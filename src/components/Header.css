@@ -1,5 +1,5 @@
 .Header {
-  & .teaser-student-info {
+  & .header-teaser {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,11 +10,12 @@
     height: 60px;
     text-decoration: none;
     color: #091e42;
+    padding: 2rem;
     & #github-icon {
       font-size: 2rem;
     }
-    &:hover {
-      background-color: #deebffc4;
+    & p {
+      text-align: center;
     }
   }
 }
