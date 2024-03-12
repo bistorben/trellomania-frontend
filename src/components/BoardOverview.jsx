@@ -13,7 +13,7 @@ const BoardOverview = ({ boardList, setBoardList }) => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/board/${authUser.sub}`,
+          `${import.meta.env.VITE_API}/board/${authUser.sub}`,
           {
             withCredentials: true,
           }

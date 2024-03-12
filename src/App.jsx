@@ -7,7 +7,6 @@ import WorkSpace from "./components/WorkSpace.jsx";
 
 function App() {
   const { loggedIn } = useContext(AuthContext);
-
   return (
     <>
       <Header />

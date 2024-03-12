@@ -1,14 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { useModal } from "../contexts/ModalContext.jsx";
 import BoardOverview from "./BoardOverview.jsx";
 import CreateBoard from "./CreateBoard.jsx";
 import "./Dashboard.css";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { AuthContext } from "../contexts/AuthContext.jsx";
 
 const Dashboard = () => {
   const { setIsOpen, setModalContent } = useModal();
-  const { authUser } = useContext(AuthContext);
   const [boardList, setBoardList] = useState([]);
 
   const createHandler = () => {

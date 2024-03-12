@@ -1,6 +1,6 @@
 import "./TeaserHome.css";
 import { BsFillGearFill } from "react-icons/bs";
-import { PiStudentFill } from "react-icons/pi";
+
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 

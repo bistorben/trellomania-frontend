@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
-import axios, { all } from "axios";
+import axios from "axios";
 import "./BoardListItem.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import AddCard from "./AddCard.jsx";
 import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
-import { DragDropContext } from "react-beautiful-dnd";
 
 const BoardListItem = ({ list, setAllLists, isAddCard, setIsAddCard }) => {
   const [allCards, setAllCards] = useState([]);
@@ -13,6 +12,7 @@ const BoardListItem = ({ list, setAllLists, isAddCard, setIsAddCard }) => {
   // currying
   const deleteHandler = (id) => async () => {
     try {
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.delete(`http://localhost:3000/list/${id}`, {
         withCredentials: true,
       });
@@ -26,7 +26,7 @@ const BoardListItem = ({ list, setAllLists, isAddCard, setIsAddCard }) => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/card/${list._id}`,
+          `${import.meta.env.VITE_API}/card/${list._id}`,
           {
             withCredentials: true,
           }

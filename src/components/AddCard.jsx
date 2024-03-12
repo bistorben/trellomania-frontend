@@ -1,15 +1,10 @@
+/* eslint-disable react/prop-types */
 import axios from "axios";
 import "./AddCard.css";
 import { useEffect, useRef, useState } from "react";
 import { GoPlus } from "react-icons/go";
 
-const AddCard = ({
-  listId,
-  isAddCard,
-  setIsAddCard,
-  allCards,
-  setAllCards,
-}) => {
+const AddCard = ({ listId, isAddCard, setIsAddCard, setAllCards }) => {
   const [cardTitle, setCardTitle] = useState("");
   const textAreaRef = useRef(null);
   useEffect(() => {
@@ -41,7 +36,7 @@ const AddCard = ({
       };
       try {
         const response = await axios.post(
-          "http://localhost:3000/card",
+          `${import.meta.env.VITE_API}/card`,
           cardData,
           {
             withCredentials: true,

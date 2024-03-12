@@ -4,7 +4,7 @@ import "./CreateBoard.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext.jsx";
 
-const CreateBoard = ({ boardList, setBoardList }) => {
+const CreateBoard = ({ setBoardList }) => {
   const [title, setTitle] = useState("");
   const { authUser } = useContext(AuthContext);
 
@@ -13,7 +13,7 @@ const CreateBoard = ({ boardList, setBoardList }) => {
     const boardData = { title, userId: authUser.sub };
     try {
       const response = await axios.post(
-        "http://localhost:3000/board",
+        `${import.meta.env.VITE_API}/board`,
         boardData,
         {
           withCredentials: true,

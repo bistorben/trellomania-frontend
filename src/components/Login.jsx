@@ -32,7 +32,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/login",
+        `${import.meta.env.VITE_API}/user/login`,
         loginData,
         {
           withCredentials: true,
@@ -40,7 +40,7 @@ const Login = () => {
       );
 
       setLoggedIn(true);
-      setAuthUser(response.data.tokenPayload)
+      setAuthUser(response.data.tokenPayload);
     } catch (err) {
       setErr(err.response.data.message);
       console.log(err);
