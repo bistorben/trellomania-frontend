@@ -26,7 +26,7 @@ const BoardList = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/list/${boardId}`,
+          `${import.meta.env.VITE_API}/${boardId}`,
           {
             withCredentials: true,
           }

@@ -1,13 +1,13 @@
 import axios from "axios";
 import "./Logout.css";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext.jsx";
 // import { useNavigate, createBrowserRouter } from "react-router-dom";
 import { useModal } from "../contexts/ModalContext.jsx";
 // import Home from "../components/Home.jsx";
 
 const Logout = () => {
-  const { loggedIn, setLoggedIn, setAuthUser } = useContext(AuthContext);
+  const { setLoggedIn, setAuthUser } = useContext(AuthContext);
   const { setIsOpen } = useModal();
 
   // const router = createBrowserRouter([{ path: "/", element: <Home /> }]);
@@ -23,7 +23,7 @@ const Logout = () => {
   const logoutHandler = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/logout",
+        `${import.meta.env.VITE_API}/user/logout`,
         {},
         {
           withCredentials: true,

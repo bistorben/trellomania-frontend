@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const AddList = ({ allLists, setAllLists, setListLenghtChanged }) => {
+const AddList = ({ setAllLists, setListLenghtChanged }) => {
   const [listTitle, setListTitle] = useState("");
   const [showInput, setShowInput] = useState(false);
   const inputRef = useRef(null);
@@ -28,7 +28,7 @@ const AddList = ({ allLists, setAllLists, setListLenghtChanged }) => {
       };
       try {
         const response = await axios.post(
-          "http://localhost:3000/list",
+          `${import.meta.env.VITE_API}/list`,
           listData,
           {
             withCredentials: true,
