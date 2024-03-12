@@ -6,11 +6,12 @@
   & .li-item-container {
     border-radius: 12px;
     background-color: #f1f2f4;
-    padding: 1rem;
+    padding: 0.5rem;
 
     & .li-header {
       display: flex;
       justify-content: space-between;
+      padding: 6px 12px 6px 8px;
       & .btn-delete {
         border: none;
         color: rgba(232, 72, 40, 0.962);
@@ -26,6 +27,8 @@
     }
     & .li-cards-container {
       list-style-type: none;
+    }
+    & .li-footer {
     }
   }
 }
