@@ -26,12 +26,12 @@ const BoardList = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API}/${boardId}`,
+          `${import.meta.env.VITE_API}/list/${boardId}`,
           {
             withCredentials: true,
           }
         );
-
+        console.log("Data", response.data);
         setAllLists(response.data);
       } catch (err) {
         console.log(err);
