@@ -13,9 +13,12 @@ const BoardListItem = ({ list, setAllLists, isAddCard, setIsAddCard }) => {
   const deleteHandler = (id) => async () => {
     try {
       // eslint-disable-next-line no-unused-vars
-      const response = await axios.delete(`http://localhost:3000/list/${id}`, {
-        withCredentials: true,
-      });
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API}/list/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       setAllLists((currLists) => currLists.filter((list) => list._id !== id));
     } catch (err) {
       console.log(err);
