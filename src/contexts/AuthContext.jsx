@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/user/loggedin",
+          `${import.meta.env.VITE_API}/user/loggedin`,
           {
             withCredentials: true, // Für das Senden von Cookies bei Cross-Origin-Anfragen
           }
