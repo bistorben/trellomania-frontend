@@ -4,14 +4,15 @@ import "./BoardList.css";
 import axios from "axios";
 import BoardListItem from "./BoardListItem.jsx";
 import { useParams } from "react-router-dom";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { reorderArray } from "../utils/utils.js";
 
-const BoardList = () => {
-  const [allLists, setAllLists] = useState([]);
+const BoardList = ({ allLists, setAllLists }) => {
   const [isAddCard, setIsAddCard] = useState({});
   const boardListRef = useRef(null);
   const [listLengthChanged, setListLenghtChanged] = useState(false);
   const { boardId } = useParams();
-
+  // console.log("from BoardList allLists", allLists);
   useEffect(() => {
     if (listLengthChanged && boardListRef.current) {
       boardListRef.current.scrollTo({
@@ -40,28 +41,54 @@ const BoardList = () => {
     getData();
   }, []);
 
-  return (
-    <section className="BoardList" ref={boardListRef}>
-      <ul className="list-container">
-        {allLists.map((list) => (
-          <BoardListItem
-            key={list._id}
-            list={list}
-            setAllLists={setAllLists}
-            isAddCard={isAddCard}
-            setIsAddCard={setIsAddCard}
-          />
-        ))}
+  const onDragEndHandler = (result) => {
+    const { destination, source, type } = result;
+    if (!destination) return;
+    if (type === "LIST") {
+      // console.log("LISTE GEZOGEN");
+      // console.log("soruce", source.index);
+      // console.log("des", destination.index);
+      setAllLists(reorderArray(allLists, source.index, destination.index));
+    } else if (type === "CARD") {
+      console.log("KARTE GEZOGEN");
+    }
+  };
 
-        <li>
-          <AddList
-            allLists={allLists}
-            setAllLists={setAllLists}
-            setListLenghtChanged={setListLenghtChanged}
-          />
-        </li>
-      </ul>
-    </section>
+  return (
+    <DragDropContext onDragEnd={onDragEndHandler}>
+      <section className="BoardList" ref={boardListRef}>
+        <Droppable droppableId={boardId} direction="horizontal" type="LIST">
+          {(dropProvided) => {
+            return (
+              <ul
+                className="list-container"
+                {...dropProvided.droppableProps}
+                ref={dropProvided.innerRef}
+              >
+                {allLists.map((list, index) => (
+                  <BoardListItem
+                    key={list._id}
+                    list={list}
+                    index={index}
+                    setAllLists={setAllLists}
+                    isAddCard={isAddCard}
+                    setIsAddCard={setIsAddCard}
+                  />
+                ))}
+                {dropProvided.placeholder}
+                <li>
+                  <AddList
+                    allLists={allLists}
+                    setAllLists={setAllLists}
+                    setListLenghtChanged={setListLenghtChanged}
+                  />
+                </li>
+              </ul>
+            );
+          }}
+        </Droppable>
+      </section>
+    </DragDropContext>
   );
 };
 

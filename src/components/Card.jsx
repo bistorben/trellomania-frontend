@@ -1,11 +1,23 @@
+import { Draggable } from "react-beautiful-dnd";
 import "./Card.css";
 
 // eslint-disable-next-line react/prop-types
-const Card = ({ title }) => {
+const Card = ({ title, id, index }) => {
   return (
-    <li className="Card">
-      <p>{title}</p>
-    </li>
+    <Draggable draggableId={id} index={index}>
+      {(provided) => {
+        return (
+          <li
+            className="Card"
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <p>{title}</p>
+          </li>
+        );
+      }}
+    </Draggable>
   );
 };
 
