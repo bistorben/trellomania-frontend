@@ -5,8 +5,15 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import AddCard from "./AddCard.jsx";
 import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 
-const BoardListItem = ({ list, setAllLists, isAddCard, setIsAddCard }) => {
+const BoardListItem = ({
+  list,
+  setAllLists,
+  isAddCard,
+  setIsAddCard,
+  index,
+}) => {
   const [allCards, setAllCards] = useState([]);
 
   // currying
@@ -44,38 +51,66 @@ const BoardListItem = ({ list, setAllLists, isAddCard, setIsAddCard }) => {
 
   return (
     <>
-      <li className="BoardListItem">
-        <div className="li-item-container">
-          <div className="li-header">
-            <h4>{list.title}</h4>
-            <div className="delete-control">
-              <button
-                id={list._id}
-                onClick={deleteHandler(list._id)}
-                className="btn-delete"
-              >
-                <FaRegTrashAlt />
-              </button>
-            </div>
-          </div>
+      <Draggable draggableId={`list-container-${list._id}`} index={index}>
+        {(dragProvided) => {
+          return (
+            <li
+              className="BoardListItem"
+              {...dragProvided.draggableProps}
+              ref={dragProvided.innerRef}
+            >
+              <div className="li-item-container">
+                <div className="li-header" {...dragProvided.dragHandleProps}>
+                  <h4>{list.title}</h4>
+                  <div className="delete-control">
+                    <button
+                      id={list._id}
+                      onClick={deleteHandler(list._id)}
+                      className="btn-delete"
+                    >
+                      <FaRegTrashAlt />
+                    </button>
+                  </div>
+                </div>
+                <Droppable
+                  droppableId={`card-container-${list._id}`}
+                  type="CARD"
+                >
+                  {(dropProvided) => {
+                    return (
+                      <ul
+                        className="li-cards-container"
+                        {...dropProvided.droppableProps}
+                        ref={dropProvided.innerRef}
+                      >
+                        {allCards.map((card, index) => (
+                          <Card
+                            key={card._id}
+                            title={card.title}
+                            id={card._id}
+                            index={index}
+                          />
+                        ))}
+                        {dropProvided.placeholder}
+                      </ul>
+                    );
+                  }}
+                </Droppable>
 
-          <ul className="li-cards-container">
-            {allCards.map((card) => (
-              <Card key={card._id} title={card.title} />
-            ))}
-          </ul>
-
-          <div className="li-footer AddCard">
-            <AddCard
-              listId={list._id}
-              isAddCard={isAddCard}
-              setIsAddCard={setIsAddCard}
-              allCards={allCards}
-              setAllCards={setAllCards}
-            />
-          </div>
-        </div>
-      </li>
+                <div className="li-footer AddCard">
+                  <AddCard
+                    listId={list._id}
+                    isAddCard={isAddCard}
+                    setIsAddCard={setIsAddCard}
+                    allCards={allCards}
+                    setAllCards={setAllCards}
+                  />
+                </div>
+              </div>
+            </li>
+          );
+        }}
+      </Draggable>
     </>
   );
 };

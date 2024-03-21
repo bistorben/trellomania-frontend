@@ -8,7 +8,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 const Dashboard = () => {
   const { setIsOpen, setModalContent } = useModal();
   const [boardList, setBoardList] = useState([]);
-
+  console.log(boardList);
   const createHandler = () => {
     setIsOpen(true);
     setModalContent(

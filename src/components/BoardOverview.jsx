@@ -8,7 +8,7 @@ import Logout from "./Logout.jsx";
 
 const BoardOverview = ({ boardList, setBoardList }) => {
   const { authUser } = useContext(AuthContext);
-
+  console.log("boardList from BoardList", boardList);
   useEffect(() => {
     const getData = async () => {
       try {
