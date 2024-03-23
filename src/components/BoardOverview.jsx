@@ -4,7 +4,6 @@ import "./BoardOverview.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext.jsx";
-import Logout from "./Logout.jsx";
 
 const BoardOverview = ({ boardList, setBoardList }) => {
   const { authUser } = useContext(AuthContext);

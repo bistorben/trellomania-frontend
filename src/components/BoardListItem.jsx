@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import axios from "axios";
+import axios, { all } from "axios";
 import "./BoardListItem.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import AddCard from "./AddCard.jsx";
@@ -9,12 +9,13 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 
 const BoardListItem = ({
   list,
+  allLists,
   setAllLists,
   isAddCard,
   setIsAddCard,
   index,
 }) => {
-  const [allCards, setAllCards] = useState([]);
+  // const [allCards, setAllCards] = useState([]);
 
   // currying
   const deleteHandler = (id) => async () => {
@@ -32,22 +33,24 @@ const BoardListItem = ({
     }
   };
 
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API}/card/${list._id}`,
-          {
-            withCredentials: true,
-          }
-        );
-        setAllCards(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getData();
-  }, []);
+  // ------ there is no need for allCards anymore, to simplify drag n drop log, we populate cards object in allLists state ----------
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `${import.meta.env.VITE_API}/card/${list._id}`,
+  //         {
+  //           withCredentials: true,
+  //         }
+  //       );
+  //       setAllCards(response.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getData();
+  // }, []);
 
   return (
     <>
@@ -72,10 +75,7 @@ const BoardListItem = ({
                     </button>
                   </div>
                 </div>
-                <Droppable
-                  droppableId={`card-container-${list._id}`}
-                  type="CARD"
-                >
+                <Droppable droppableId={list._id} type="CARD">
                   {(dropProvided) => {
                     return (
                       <ul
@@ -83,7 +83,7 @@ const BoardListItem = ({
                         {...dropProvided.droppableProps}
                         ref={dropProvided.innerRef}
                       >
-                        {allCards.map((card, index) => (
+                        {list.cards.map((card, index) => (
                           <Card
                             key={card._id}
                             title={card.title}
@@ -102,8 +102,8 @@ const BoardListItem = ({
                     listId={list._id}
                     isAddCard={isAddCard}
                     setIsAddCard={setIsAddCard}
-                    allCards={allCards}
-                    setAllCards={setAllCards}
+                    allLists={allLists}
+                    setAllLists={setAllLists}
                   />
                 </div>
               </div>
