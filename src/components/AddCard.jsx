@@ -4,7 +4,13 @@ import "./AddCard.css";
 import { useEffect, useRef, useState } from "react";
 import { GoPlus } from "react-icons/go";
 
-const AddCard = ({ listId, isAddCard, setIsAddCard, setAllCards }) => {
+const AddCard = ({
+  listId,
+  isAddCard,
+  setIsAddCard,
+  setAllLists,
+  allLists,
+}) => {
   const [cardTitle, setCardTitle] = useState("");
   const textAreaRef = useRef(null);
   useEffect(() => {
@@ -43,7 +49,17 @@ const AddCard = ({ listId, isAddCard, setIsAddCard, setAllCards }) => {
           }
         );
 
-        setAllCards((prevCards) => [...prevCards, response.data]);
+        const newAllLists = allLists.map((list) => {
+          if (list._id === listId) {
+            return {
+              ...list,
+              cards: [...list.cards, response.data],
+            };
+          }
+          return list;
+        });
+
+        setAllLists(newAllLists);
         setCardTitle("");
       } catch (err) {
         console.log(err);

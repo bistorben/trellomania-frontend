@@ -1,18 +1,21 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from "react";
 import AddList from "./AddList.jsx";
 import "./BoardList.css";
-import axios from "axios";
+import axios, { all } from "axios";
 import BoardListItem from "./BoardListItem.jsx";
 import { useParams } from "react-router-dom";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { reorderArray } from "../utils/utils.js";
 
+// eslint-disable-next-line react/prop-types
 const BoardList = ({ allLists, setAllLists }) => {
   const [isAddCard, setIsAddCard] = useState({});
   const boardListRef = useRef(null);
   const [listLengthChanged, setListLenghtChanged] = useState(false);
   const { boardId } = useParams();
-  // console.log("from BoardList allLists", allLists);
+
+  console.log("allLists from BoardList: ", allLists);
   useEffect(() => {
     if (listLengthChanged && boardListRef.current) {
       boardListRef.current.scrollTo({
@@ -42,7 +45,7 @@ const BoardList = ({ allLists, setAllLists }) => {
   }, []);
 
   const onDragEndHandler = (result) => {
-    const { destination, source, type } = result;
+    const { destination, source, type, draggableId } = result;
     if (!destination) return;
     if (type === "LIST") {
       // console.log("LISTE GEZOGEN");
@@ -50,7 +53,44 @@ const BoardList = ({ allLists, setAllLists }) => {
       // console.log("des", destination.index);
       setAllLists(reorderArray(allLists, source.index, destination.index));
     } else if (type === "CARD") {
-      console.log("KARTE GEZOGEN");
+      // CAUTION: working but needs to be refactored....
+      console.log(source);
+      console.log(destination);
+
+      const sourceList = allLists.find(
+        (list) => list._id === source.droppableId
+      );
+
+      const destinationList = allLists.find(
+        (list) => list._id === destination.droppableId
+      );
+
+      const draggedCard = sourceList.cards.find(
+        (card) => card._id === draggableId
+      );
+
+      destinationList.cards.splice(destination.index, 0, draggedCard);
+
+      console.log("destination List Obj: ", destinationList);
+      console.log("destiantion Cards array: ", destinationList.cards);
+      console.log("draggedCard Obj: ", draggedCard);
+      const newAllLists = allLists.map((list) => {
+        if (list._id === source.droppableId) {
+          return {
+            ...list,
+            cards: [...list.cards.filter((card) => card._id !== draggableId)],
+          };
+        }
+        if (list._id === destination.droppableId) {
+          return {
+            ...list,
+            cards: destinationList.cards,
+          };
+        }
+        return list;
+      });
+
+      setAllLists(newAllLists);
     }
   };
 
@@ -70,6 +110,7 @@ const BoardList = ({ allLists, setAllLists }) => {
                     key={list._id}
                     list={list}
                     index={index}
+                    allLists={allLists}
                     setAllLists={setAllLists}
                     isAddCard={isAddCard}
                     setIsAddCard={setIsAddCard}

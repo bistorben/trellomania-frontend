@@ -29,6 +29,8 @@
       }
     }
     & .li-cards-container {
+      /* min height for react b dnd to guarantee the recognition of an droppable area */
+      min-height: 0.1px;
       list-style-type: none;
       display: flex;
       flex-direction: column;
