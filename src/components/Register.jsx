@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { TbExclamationCircle } from "react-icons/tb";
 
 import axios from "axios";
+import TestUser from "./TestUser.jsx";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -166,6 +167,7 @@ const Register = () => {
           </>
         )}
       </section>
+      <TestUser />
       <div id="ballons">
         <img src="/luftballon.jpg" alt="" />
       </div>
