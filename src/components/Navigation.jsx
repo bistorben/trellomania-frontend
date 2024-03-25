@@ -22,7 +22,7 @@ const Navigation = () => {
       className={`Navigation ${loggedIn ? "nav-logged-in" : "nav-logged-out"}`}
     >
       <div className="wrapper-nav-left">
-        <NavLink to="/" className="logo">
+        <NavLink to={loggedIn ? "/dashboard" : "/"} className="logo">
           <SiTrello style={{ color: loggedIn ? undefined : "#0c66e4" }} />
           <h3>Trellomania</h3>
         </NavLink>

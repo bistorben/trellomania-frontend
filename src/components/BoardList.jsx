@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import AddList from "./AddList.jsx";
 import "./BoardList.css";
-import axios, { all } from "axios";
+import axios from "axios";
 import BoardListItem from "./BoardListItem.jsx";
 import { useParams } from "react-router-dom";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -35,7 +35,6 @@ const BoardList = ({ allLists, setAllLists }) => {
             withCredentials: true,
           }
         );
-        console.log("Data", response.data);
         setAllLists(response.data);
       } catch (err) {
         console.log(err);
@@ -44,14 +43,36 @@ const BoardList = ({ allLists, setAllLists }) => {
     getData();
   }, []);
 
-  const onDragEndHandler = (result) => {
+  const onDragEndHandler = async (result) => {
     const { destination, source, type, draggableId } = result;
     if (!destination) return;
     if (type === "LIST") {
-      // console.log("LISTE GEZOGEN");
-      // console.log("soruce", source.index);
-      // console.log("des", destination.index);
-      setAllLists(reorderArray(allLists, source.index, destination.index));
+      try {
+        console.log(result);
+        const sourceListId = result.draggableId.slice("list-container-".length);
+
+        const response = await axios.patch(
+          `${import.meta.env.VITE_API}/list/order`,
+          {
+            boardId,
+            sourceList: { sourceListId, newOrder: destination.index },
+            destinationList: {
+              oldOrder: destination.index,
+              newOrder: source.index,
+            },
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+      // causing a render bug... have to check this later
+      setAllLists((currentLists) =>
+        reorderArray(currentLists, source.index, destination.index)
+      );
     } else if (type === "CARD") {
       // CAUTION: working but needs to be refactored....
       console.log(source);

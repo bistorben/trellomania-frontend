@@ -5,6 +5,7 @@ import axios from "axios";
 import { AuthContext } from "../contexts/AuthContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { TbExclamationCircle } from "react-icons/tb";
+import TestUser from "./TestUser.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -65,36 +66,39 @@ const Login = () => {
   };
 
   return (
-    <section className="Login wrapper-form-section ">
-      <h1>Log in to your account</h1>
-      <form onSubmit={submitHandler}>
-        <input
-          type="email"
-          placeholder="E-mail"
-          value={email}
-          onChange={emailHandler}
-          required
-          ref={emailInputRef}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={passwordHandler}
-          required
-        />
-        <button className={isFormValid ? "btn-valid" : "btn-invalid"}>
-          Log in
-        </button>
-        <Link to="/register">No Account? Please register!</Link>
-        {err && (
-          <div className="err-wrapper">
-            <TbExclamationCircle />
-            <p>{err}</p>
-          </div>
-        )}
-      </form>
-    </section>
+    <>
+      <section className="Login wrapper-form-section ">
+        <h1>Log in to your account</h1>
+        <form onSubmit={submitHandler}>
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={emailHandler}
+            required
+            ref={emailInputRef}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={passwordHandler}
+            required
+          />
+          <button className={isFormValid ? "btn-valid" : "btn-invalid"}>
+            Log in
+          </button>
+          <Link to="/register">No Account? Please register!</Link>
+          {err && (
+            <div className="err-wrapper">
+              <TbExclamationCircle />
+              <p>{err}</p>
+            </div>
+          )}
+        </form>
+      </section>
+      <TestUser />
+    </>
   );
 };
 
