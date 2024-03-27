@@ -1,5 +1,6 @@
 import "./WorkSpace.css";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import InviteUser from "./InviteUser.jsx";
 
 const WorkSpace = () => {
   return (

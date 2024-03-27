@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  & button {
+  /* & button {
     background-color: #dfe1e6;
     border: none;
     border-radius: 3px;
@@ -17,7 +17,7 @@
     &:hover {
       background-color: #ffffff;
     }
-  }
+  } */
 }
 .dashboard-main {
   flex-grow: 1;

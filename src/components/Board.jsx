@@ -6,9 +6,9 @@ const Board = () => {
   const [allLists, setAllLists] = useState([]);
   return (
     <>
-      <section className="board-header">
+      {/* <section className="board-header">
         <h3>Name of Board</h3>
-      </section>
+      </section> */}
       <section className="board-main">
         <BoardList allLists={allLists} setAllLists={setAllLists} />
       </section>

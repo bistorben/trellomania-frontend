@@ -54,12 +54,14 @@
     }
 
     & .user-panel {
-      /* & .user-icon {
+      display: flex;
+      gap: 0.5rem;
+      & .user-icon {
         background-color: #00a3bf;
         padding: var(--p-1);
         border-radius: 50%;
         border: none;
-      } */
+      }
     }
   }
   & .nav-link {

@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     loading,
     setLoading,
   };
-
+  console.log("auth Usesr", authUser);
   useEffect(() => {
     const getData = async () => {
       try {
