@@ -65,3 +65,18 @@
     }
   }
 }
+
+.btn-primary {
+  background-color: #dfe1e6;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 12px 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffffff;
+  }
+}

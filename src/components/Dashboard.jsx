@@ -8,6 +8,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 const Dashboard = () => {
   const { setIsOpen, setModalContent } = useModal();
   const [boardList, setBoardList] = useState([]);
+  const [sharedBoards, setSharedBoards] = useState([]);
   console.log(boardList);
   const createHandler = () => {
     setIsOpen(true);
@@ -20,12 +21,17 @@ const Dashboard = () => {
     <>
       <section className="dashboard-header">
         <h1>My User Dasboard</h1>
-        <button onClick={createHandler}>
+        <button className="btn-primary" onClick={createHandler}>
           Create <IoIosAddCircleOutline className="plus-icon" />
         </button>
       </section>
       <section className="dashboard-main">
-        <BoardOverview boardList={boardList} setBoardList={setBoardList} />
+        <BoardOverview
+          boardList={boardList}
+          setBoardList={setBoardList}
+          sharedBoards={sharedBoards}
+          setSharedBoards={setSharedBoards}
+        />
       </section>
     </>
   );

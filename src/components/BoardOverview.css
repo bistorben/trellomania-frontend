@@ -1,20 +1,56 @@
 .BoardOverview {
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
-  & h1 {
+  & h3 {
     margin-bottom: 1rem;
   }
 
-  & .board-container {
+  & .shared-container {
+    display: flex;
+    flex-direction: column;
+    & .no-boards {
+      width: 250px;
+      height: 150px;
+      background-color: #e2e4e7;
+      display: grid;
+      place-items: center;
+      border-radius: 5px;
+      color: #262626;
+    }
+  }
+  & .board-container,
+  .shared-container {
     list-style-type: none;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    & .board-card {
+    & .create-board {
+      cursor: pointer;
       width: 250px;
       height: 150px;
-      background-color: rgba(128, 128, 128, 0.703);
-
+      background-color: #e2e4e7;
+      display: grid;
+      place-items: center;
+      border-radius: 5px;
+      color: #262626;
+      &:hover {
+        background-color: #ffffff;
+        transition: 0.2s;
+      }
+      & .create-icon {
+        font-size: 30px;
+      }
+    }
+    & .board-card {
+      cursor: pointer;
+      width: 250px;
+      height: 150px;
+      background-color: #313638;
+      display: grid;
+      place-items: center;
       border-radius: 5px;
       a {
         width: 100%;
@@ -23,9 +59,10 @@
         place-items: center;
         text-decoration: none;
         color: #ffffff;
-        &:hover {
-          background-color: rgba(128, 128, 128, 0.924);
-        }
+      }
+      &:hover {
+        background-color: #000000;
+        transition: 0.2s;
       }
     }
   }

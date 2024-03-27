@@ -10,6 +10,7 @@ import Logout from "./Logout.jsx";
 const Navigation = () => {
   const { loggedIn } = useContext(AuthContext);
   const { setIsOpen, setModalContent } = useModal();
+  const { authUser } = useContext(AuthContext);
 
   const logoutHandler = (e) => {
     e.preventDefault();
@@ -41,9 +42,12 @@ const Navigation = () => {
         )}
 
         <div className="user-panel">
-          {/* <NavLink to="/register" className="user-icon">
-            JE
-          </NavLink> */}
+          {authUser && (
+            <div className="user-icon">
+              {authUser.userName.slice(0, 2).toUpperCase()}
+            </div>
+          )}
+
           {loggedIn ? (
             <a href="#" onClick={logoutHandler}>
               Logout

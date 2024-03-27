@@ -14,12 +14,14 @@
     & .li-header {
       display: flex;
       justify-content: space-between;
-      padding: 6px 12px 6px 8px;
+      /* padding: 6px 12px 6px 8px; */
       & .btn-delete {
         border: none;
         color: rgba(232, 72, 40, 0.962);
         font-size: 16px;
         cursor: pointer;
+        padding: 8px 12px;
+        background-color: #f1f2f4;
         &:hover {
           color: rgb(15, 157, 36);
         }

@@ -6,6 +6,7 @@ import AddCard from "./AddCard.jsx";
 import { useEffect, useState } from "react";
 import Card from "./Card.jsx";
 import { Draggable, Droppable } from "react-beautiful-dnd";
+import ChangeListTitle from "./ChangeListTitle.jsx";
 
 const BoardListItem = ({
   list,
@@ -14,6 +15,8 @@ const BoardListItem = ({
   isAddCard,
   setIsAddCard,
   index,
+  changeTitle,
+  setChangeTitle,
 }) => {
   // const [allCards, setAllCards] = useState([]);
 
@@ -64,7 +67,15 @@ const BoardListItem = ({
             >
               <div className="li-item-container">
                 <div className="li-header" {...dragProvided.dragHandleProps}>
-                  <h4>{list.title}</h4>
+                  <ChangeListTitle
+                    title={list.title}
+                    changeTitle={changeTitle}
+                    setChangeTitle={setChangeTitle}
+                    listId={list._id}
+                    allLists={allLists}
+                    setAllLists={setAllLists}
+                  />
+                  {/* <h4>{list.title}</h4> */}
                   <div className="delete-control">
                     <button
                       id={list._id}
