@@ -21,6 +21,6 @@ https://www.linkedin.com/in/torben-b-98955068/
 
 Julia Erbis: 
 
--- tba ---
+https://www.linkedin.com/in/julia-e-07bab42a4/
 
 
