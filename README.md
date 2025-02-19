@@ -4,10 +4,6 @@ As part of our training with the Digital Career Institute (DCI) to become a full
 
 Trello serves as a source of inspiration and a rough design template.
 
-We are slowly looking around on the job market, please contact us if you are interested or have any questions.
-
-YEAH!
-
 ## Below you can find the backend repository:
 
 https://github.com/bistorben/trellomania-backend
