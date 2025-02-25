@@ -19,4 +19,6 @@ Julia Erbis:
 
 https://www.linkedin.com/in/julia-e-07bab42a4/
 
+## Testscreenshot
 
+![localhost_5173_dashboard](https://github.com/user-attachments/assets/ef205213-a142-4f1a-8ae5-52b0c3ce0f70)
