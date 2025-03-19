@@ -11,6 +11,10 @@ As part of my training to become a full-stack web developer (MERN stack) at DCI,
 - **User Authentication**: Sign-up/Login with JSON Web Token (JWT)  
 - **Protected Routes**: Only authenticated users can access boards  
 
+## Project Demo
+
+https://github.com/bistorben/trellomania-frontend/blob/main/public/demo.gif
+
 ## Project Screenshots
 
 ![localhost_5173_dashboard (3)](https://github.com/user-attachments/assets/13b8687d-3ce3-4a71-a2c8-9680e430bd17)
