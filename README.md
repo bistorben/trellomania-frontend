@@ -13,8 +13,7 @@ As part of my training to become a full-stack web developer (MERN stack) at DCI,
 
 ## Project Demo
 
-![Projekt-Demo]([https://github.com/dein-benutzername/dein-repo/raw/main/demo.gif](https://github.com/bistorben/trellomania-frontend/blob/main/public/demo.gif))
-
+![Projekt-Demo](https://github.com/bistorben/trellomania-frontend/raw/main/public/demo.gif)
 
 ## Project Screenshots
 
